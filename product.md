@@ -5,7 +5,9 @@ Date : 2 novembre 2026.
 
 ## 1. Intention du projet
 
-Le club ETIC organise un mini-projet dans le cadre de l'intégration de ses nouveaux membres. Le projet consiste à créer un business game : un jeu de simulation du cycle de vie d'une entreprise, destiné à apprendre à la gérer.
+Le club ETIC organise un mini-projet dans le cadre de l'intégration de ses nouveaux membres. Les nouveaux membres apprennent à réaliser ce type de projet en construisant un business game : un jeu de simulation du cycle de vie d'une entreprise, destiné à apprendre à la gérer.
+
+La profondeur doit susciter de la réflexion et de vrais arbitrages, sans imposer un projet démesuré. Comprendre les interactions entre fonctions de l'entreprise et décider en équipe font partie des objectifs validés. La distinction entre membres qui développent le projet et participants qui jouent reste à préciser.
 
 Les équipes dirigent leurs entreprises dans un même monde économique. Elles doivent acheter, produire, vendre et livrer tout en gérant leurs employés, leurs investissements et leurs campagnes marketing. Leurs choix affectent leurs concurrents et leur propre trajectoire de développement.
 
@@ -17,7 +19,7 @@ Ce document conserve la vision exprimée par le porteur du projet. Il ne constit
 - **Exemple** : illustration donnée pour expliquer une idée ; contenu et valeurs à confirmer.
 - **À décider** : règle encore ouverte ou recommandation de l'assistant sans réponse du porteur du projet.
 
-Les cinq premières questions de cadrage sont consignées en section 15. Aucune de leurs recommandations n'a encore été validée.
+Les réponses à la première série de questions et la prochaine série ouverte sont consignées en section 15. Les propositions non validées restent identifiées comme telles.
 
 ## 3. Univers et storytelling
 
@@ -41,7 +43,7 @@ Au début de la partie, chaque équipe choisit une région d'implantation. Chaqu
 
 ### Équipes — acquis
 
-Les joueurs sont regroupés en équipes en concurrence dans le même marché. Elles achètent auprès des mêmes fournisseurs et partagent les ressources disponibles.
+Les joueurs sont regroupés en équipes en concurrence dans le même marché. La partie se déroule en présentiel sur une grande journée, approximativement de 10 h à 18 h. Toutes les équipes accèdent au logiciel et commencent et terminent au même moment. Elles achètent auprès des mêmes fournisseurs et partagent les ressources disponibles.
 
 La rareté est effective : si un produit n'existe qu'en un exemplaire chez un fournisseur et qu'une équipe l'achète, les autres ne peuvent plus l'acheter tant qu'aucun nouveau stock n'est disponible. Les règles de réapprovisionnement restent à décider.
 
@@ -59,7 +61,9 @@ Le jeu comporte un temps simulé accéléré. La formulation initiale indique qu
 
 Les approvisionnements, fabrications, livraisons, salaires, pertes de rendement, campagnes et événements doivent être cohérents avec ce temps commun.
 
-**À décider** : durée réelle d'une partie, début et fin, pauses, fonctionnement pendant les déconnexions, calendrier des prélèvements et résolution des actions simultanées.
+**Acquis** : session commune en présentiel d'environ 10 h à 18 h, soit environ huit heures réelles. L'horaire exact reste ajustable.
+
+**À décider** : confirmation du ratio temporel, pauses communes, fonctionnement pendant les déconnexions, calendrier des prélèvements et résolution des actions simultanées. À titre de calcul, huit heures sans pause représenteraient 480 jours simulés avec le ratio proposé ; cette durée simulée n'est pas encore validée.
 
 ### Boucle d'activité — synthèse des mécaniques exprimées
 
@@ -173,9 +177,13 @@ Des événements réguliers font évoluer les conditions de jeu et forcent les �
 
 Les enchères sont donc une mécanique envisagée à préciser.
 
+### Pilotage retenu pour le cadrage
+
+Le porteur du projet laisse ce choix à l'assistant et privilégie la simplicité : un calendrier d'événements préparé à l'avance et exécuté automatiquement. Un contrôle manuel étendu des organisateurs reste une possibilité facultative, uniquement si son coût de réalisation est faible. Il n'est pas nécessaire au fonctionnement prévu.
+
 ### À décider
 
-Déclenchement automatique ou par les organisateurs, fréquence, durée, portée, préavis, lien avec les news, conditions de fin et règles d'enchères. Les événements doivent pouvoir affecter l'offre, la demande ou d'autres paramètres explicitement définis.
+Fréquence, durée, portée, préavis, lien avec les news, conditions de fin et règles d'enchères. Les événements doivent pouvoir affecter l'offre, la demande ou d'autres paramètres explicitement définis.
 
 ## 13. Marché noir, cartes secrètes et easter eggs
 
@@ -215,23 +223,42 @@ La progression prend ainsi la forme d'un arbre de décisions avec différentes t
 
 ### À décider
 
-Paliers, conditions de déblocage, coût et visibilité des choix, permanence des exclusions, nombre de branches et équilibre économique entre trajectoires. Le seuil final de développement et les conditions de victoire restent ouverts.
+Paliers, conditions de déblocage, coût et visibilité des choix, permanence des exclusions, nombre de branches et équilibre économique entre trajectoires. Le seuil final de développement reste ouvert. Le classement final et l'impact social et environnemental sont décrits en section 15.
 
-## 15. Première série GrillMe — en attente de réponses
+## 15. Décisions de cadrage et entretien en cours
 
-Ces recommandations ont été proposées par l'assistant. Le porteur du projet n'y a pas encore répondu ; elles ne sont pas des décisions.
+### Première série — réponses enregistrées
 
-| ID | Question | Recommandation proposée, non validée |
+| ID | Sujet | Réponse et statut |
 | --- | --- | --- |
-| Q1 | Quelle priorité pédagogique donner au jeu ? | Faire comprendre les liens entre achats, production, employés, ventes et trésorerie, et apprendre la décision en équipe avec des conséquences compréhensibles. |
-| Q2 | Quel format et quelle durée pour une partie ? | Session simultanée à début et fin communs, pendant 2 à 3 heures réelles ; confirmer aussi 1 jour simulé = 1 minute réelle. |
-| Q3 | Comment déterminer le gagnant ? | Classement à la fin du temps imparti selon la valeur finale de l'entreprise : trésorerie, stocks et équipements, moins les dettes ; formule à définir. L'existence de dettes reste elle-même à décider. |
-| Q4 | Quel contrôle donner aux organisateurs ? | Un maître du jeu pouvant lancer ou suspendre le temps, publier les news et déclencher des événements ; règles courantes automatiques. |
-| Q5 | Comment distinguer vision complète et première version ? | Conserver toutes les mécaniques dans la vision, puis choisir ensemble le périmètre minimal jouable du mini-projet. |
+| Q1 | Objectif pédagogique et profondeur | Validé : apprendre à réaliser ce type de projet, comprendre la gestion de l'entreprise et réfléchir en équipe. Une profondeur stratégique réelle est souhaitée, avec une réalisation de taille raisonnable. |
+| Q2 | Format | Validé : journée en présentiel, approximativement 10 h–18 h, début et fin communs à toutes les équipes. La proposition de 2–3 heures est remplacée. Le ratio temporel et les pauses restent à préciser. |
+| Q3 | Victoire | À la fin de la journée, l'argent détenu est un critère de victoire. Le porteur souhaite aussi prendre en compte l'impact social et environnemental. Leur combinaison et leurs mesures restent ouvertes. La valorisation des stocks et des équipements proposée par l'assistant n'a pas été retenue comme règle. |
+| Q4 | Organisateurs | Choix délégué à l'assistant, avec une préférence pour la simplicité : événements prédéfinis et automatiques. Un pilotage manuel est facultatif si peu coûteux. |
+| Q5 | Périmètre de la première version | Toutes les mécaniques décrites sont souhaitées jouables dès cette version. Réduire le volume de contenu reste une proposition à discuter ; supprimer des mécaniques n'est pas une décision validée. |
+
+### Classement et impact social et environnemental
+
+**Acquis** : l'argent disponible à la fin de la journée compte dans la victoire. Le volet social et environnemental doit être approfondi comme autre dimension de réussite.
+
+**À décider** : un classement unique ou plusieurs récompenses, priorité de l'argent, poids des impacts, mesure des impacts, distinction entre social et environnemental, égalités et traitement des engagements en cours à la clôture. Aucun score composite ni formule comptable n'est encore validé.
+
+### Deuxième série — questions ouvertes
+
+Les recommandations suivantes sont proposées par l'assistant et attendent une réponse. Un « oui » accepte la recommandation de la question concernée.
+
+| ID | Question | Recommandation non validée |
+| --- | --- | --- |
+| Q6 | Faut-il plusieurs récompenses plutôt qu'un score combinant argent et impact ? | Un gagnant économique, selon l'argent disponible à la clôture, et une distinction séparée pour l'impact social et environnemental. Cela évite de fixer immédiatement un taux de conversion entre argent et impact. |
+| Q7 | Les impacts doivent-ils découler des décisions courantes ? | Oui : effets sociaux et environnementaux définis pour les fournisseurs, les produits, les transports et les conditions salariales ; indicateurs visibles par l'équipe, sans module de gestion supplémentaire. Les règles et unités seront précisées ensuite. |
+| Q8 | Confirmer un jour simulé par minute réelle, avec une pause commune possible ? | Oui : temps global partagé et gel de toute la simulation pendant une pause commune, notamment pour le déjeuner. Huit heures hors pauses représenteraient 480 jours simulés. |
+| Q9 | Les membres d'une équipe doivent-ils gérer ensemble une seule entreprise ? | Oui : une entreprise par équipe, plusieurs accès individuels et les mêmes droits de décision pour ses membres. Nombre d'équipes et de personnes à préciser si déjà connus. |
+| Q10 | Le marché client doit-il être simulé par le logiciel ? | Oui : des clients simulés génèrent une demande partagée que les équipes se disputent ; les échanges entre équipes constituent une activité distincte. La formule d'attribution sera décidée ensuite. |
+| Q11 | Peut-on limiter le contenu tout en conservant toutes les mécaniques ? | Oui : petit catalogue, quelques régions, spécialisations, événements et cartes pour la première version. Délai de réalisation, nombre de développeurs et niveau technique à communiquer pour dimensionner ce contenu. |
 
 ## 16. Reprendre le cadrage
 
-Commencer par les réponses à Q1–Q5. Recalculer ensuite les questions dépendantes selon les réponses, sans transformer une recommandation restée sans réponse en règle acquise.
+Reprendre les questions Q6–Q11 en attente de la section 15. Les réponses à Q1–Q5 sont enregistrées. Recalculer ensuite les questions dépendantes selon les réponses, sans transformer une recommandation restée sans réponse en règle acquise.
 
 Les domaines à approfondir comprennent :
 
@@ -247,6 +274,8 @@ Une nouvelle session peut approfondir une partie du document seulement. Elle doi
 
 ## 17. Périmètre de réalisation
 
-La vision ci-dessus conserve toutes les idées exprimées. La première version jouable, les priorités, le calendrier de réalisation, les ressources disponibles, la plateforme cible et la stack technique restent à décider.
+La première version doit rendre jouables toutes les mécaniques décrites : régions, temps partagé, achats, fabrication et usure, ventes, livraisons, ressources humaines, marketing, news, événements et enchères, marché noir, cartes secrètes, alliances et trahisons, easter eggs et progression à choix exclusifs. Le volet social et environnemental souhaité doit également être défini.
+
+Cette ambition est un objectif produit, pas encore une estimation de faisabilité. Le volume de contenu, les priorités de réalisation, le calendrier, les ressources disponibles, la plateforme cible et la stack technique restent à décider.
 
 Aucune application n'est encore implémentée dans ce dépôt. Aucun équilibrage économique ni scénario de partie complet n'a encore été testé.
