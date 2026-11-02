@@ -43,27 +43,27 @@ Au début de la partie, chaque équipe choisit une région d'implantation. Chaqu
 
 ### Équipes — acquis
 
-Les joueurs sont regroupés en équipes en concurrence dans le même marché. La partie se déroule en présentiel sur une grande journée, approximativement de 10 h à 18 h. Toutes les équipes accèdent au logiciel et commencent et terminent au même moment. Elles achètent auprès des mêmes fournisseurs et partagent les ressources disponibles.
+Chaque équipe gère une seule entreprise. Plusieurs membres peuvent se connecter simultanément et tous prendre des décisions. Les équipes sont en concurrence dans le même marché. La partie se déroule en présentiel sur une grande journée, approximativement de 10 h à 18 h. Toutes les équipes accèdent au logiciel et commencent et terminent au même moment. Elles achètent auprès des mêmes fournisseurs et partagent les ressources disponibles.
 
 La rareté est effective : si un produit n'existe qu'en un exemplaire chez un fournisseur et qu'une équipe l'achète, les autres ne peuvent plus l'acheter tant qu'aucun nouveau stock n'est disponible. Les règles de réapprovisionnement restent à décider.
 
 ### Relations entre équipes — acquis
 
-Les équipes peuvent collaborer, s'allier et se trahir. Cette liberté fait partie de l'expérience souhaitée.
+Les équipes peuvent collaborer, s'allier et se trahir. Cette liberté fait partie de l'expérience souhaitée. Les entreprises peuvent aussi acheter et vendre entre elles, en plus des ventes aux clients simulés. Les biens et les modalités de ces échanges restent à préciser ; le rachat d'une entreprise n'est pas établi.
 
-**À décider** : taille et nombre d'équipes, accès individuels ou compte partagé, échanges autorisés, transferts de fonds ou de marchandises, contrats, visibilité des accords et moyens de trahison. La présence d'un outil de négociation dans la plateforme n'est pas encore décidée.
+**À décider** : taille et nombre d'équipes, modalités d'authentification, biens échangeables et règles des transactions entre entreprises, transferts de fonds ou de marchandises, contrats, visibilité des accords et moyens de trahison. La présence d'un outil de négociation dans la plateforme n'est pas encore décidée.
 
 ## 5. Temps et boucle de jeu
 
-### Temps — acquis à préciser
+### Temps — acquis
 
-Le jeu comporte un temps simulé accéléré. La formulation initiale indique qu'« un jour équivaut à une minute » ; l'interprétation proposée est **un jour simulé pour une minute réelle**, à confirmer explicitement.
+Le jeu comporte un temps simulé accéléré : **un jour simulé pour une minute réelle**. Le temps est commun à toutes les équipes. Une pause commune est possible, notamment pour le déjeuner ; elle gèle toute la simulation.
 
 Les approvisionnements, fabrications, livraisons, salaires, pertes de rendement, campagnes et événements doivent être cohérents avec ce temps commun.
 
 **Acquis** : session commune en présentiel d'environ 10 h à 18 h, soit environ huit heures réelles. L'horaire exact reste ajustable.
 
-**À décider** : confirmation du ratio temporel, pauses communes, fonctionnement pendant les déconnexions, calendrier des prélèvements et résolution des actions simultanées. À titre de calcul, huit heures sans pause représenteraient 480 jours simulés avec le ratio proposé ; cette durée simulée n'est pas encore validée.
+**À décider** : horaires et commande des pauses communes, fonctionnement pendant les déconnexions, calendrier des prélèvements et résolution des actions simultanées. Huit heures sans pause représentent 480 jours simulés ; la durée simulée effective dépendra des pauses et des horaires définitifs.
 
 ### Boucle d'activité — synthèse des mécaniques exprimées
 
@@ -114,9 +114,9 @@ Recettes, unités produites par cycle, files de production, fabrication simultan
 
 ### Vente — acquis
 
-Les équipes mettent leurs produits fabriqués sur le marché et reçoivent des demandes de livraison. Les équipes se disputent un même marché ; la répartition de la demande reste à définir.
+Les équipes mettent leurs produits fabriqués sur le marché et reçoivent des demandes de livraison de clients simulés par le logiciel. Les équipes se disputent un même marché ; la répartition de la demande reste à définir. Les entreprises peuvent également acheter et vendre entre elles, selon des modalités à préciser.
 
-**À décider** : fixation des prix, origine et fréquence des demandes, critères de choix des clients, acceptation ou refus d'une commande, réservation de stock, annulation et moment de l'encaissement.
+**À décider** : fixation des prix, fréquence des demandes simulées, critères de choix des clients, acceptation ou refus d'une commande, réservation de stock, annulation et moment de l'encaissement.
 
 ### Livraison — acquis
 
@@ -232,33 +232,37 @@ Paliers, conditions de déblocage, coût et visibilité des choix, permanence de
 | ID | Sujet | Réponse et statut |
 | --- | --- | --- |
 | Q1 | Objectif pédagogique et profondeur | Validé : apprendre à réaliser ce type de projet, comprendre la gestion de l'entreprise et réfléchir en équipe. Une profondeur stratégique réelle est souhaitée, avec une réalisation de taille raisonnable. |
-| Q2 | Format | Validé : journée en présentiel, approximativement 10 h–18 h, début et fin communs à toutes les équipes. La proposition de 2–3 heures est remplacée. Le ratio temporel et les pauses restent à préciser. |
+| Q2 | Format | Validé : journée en présentiel, approximativement 10 h–18 h, début et fin communs à toutes les équipes. La proposition de 2–3 heures est remplacée. Le ratio et le principe de pause commune sont confirmés par Q8 ; les horaires des pauses restent à préciser. |
 | Q3 | Victoire | À la fin de la journée, l'argent détenu est un critère de victoire. Le porteur souhaite aussi prendre en compte l'impact social et environnemental. Leur combinaison et leurs mesures restent ouvertes. La valorisation des stocks et des équipements proposée par l'assistant n'a pas été retenue comme règle. |
 | Q4 | Organisateurs | Choix délégué à l'assistant, avec une préférence pour la simplicité : événements prédéfinis et automatiques. Un pilotage manuel est facultatif si peu coûteux. |
 | Q5 | Périmètre de la première version | Toutes les mécaniques décrites sont souhaitées jouables dès cette version. Réduire le volume de contenu reste une proposition à discuter ; supprimer des mécaniques n'est pas une décision validée. |
 
 ### Classement et impact social et environnemental
 
-**Acquis** : l'argent disponible à la fin de la journée compte dans la victoire. Le volet social et environnemental doit être approfondi comme autre dimension de réussite.
+**Acquis** : un seul gagnant à la fin de la journée. L'argent disponible compte dans la victoire et le volet social et environnemental doit être pris en compte dans la définition du classement. La proposition de distinctions séparées est refusée.
 
-**À décider** : un classement unique ou plusieurs récompenses, priorité de l'argent, poids des impacts, mesure des impacts, distinction entre social et environnemental, égalités et traitement des engagements en cours à la clôture. Aucun score composite ni formule comptable n'est encore validé.
+**À décider** : combinaison des critères dans le classement unique, priorité de l'argent, poids des impacts, mesure des impacts, distinction entre social et environnemental, égalités et traitement des engagements en cours à la clôture. Aucun score composite ni formule comptable n'est encore validé.
 
-### Deuxième série — questions ouvertes
+### Deuxième série — réponses et clarifications
 
-Les recommandations suivantes sont proposées par l'assistant et attendent une réponse. Un « oui » accepte la recommandation de la question concernée.
-
-| ID | Question | Recommandation non validée |
+| ID | Sujet | Réponse et statut |
 | --- | --- | --- |
-| Q6 | Faut-il plusieurs récompenses plutôt qu'un score combinant argent et impact ? | Un gagnant économique, selon l'argent disponible à la clôture, et une distinction séparée pour l'impact social et environnemental. Cela évite de fixer immédiatement un taux de conversion entre argent et impact. |
-| Q7 | Les impacts doivent-ils découler des décisions courantes ? | Oui : effets sociaux et environnementaux définis pour les fournisseurs, les produits, les transports et les conditions salariales ; indicateurs visibles par l'équipe, sans module de gestion supplémentaire. Les règles et unités seront précisées ensuite. |
-| Q8 | Confirmer un jour simulé par minute réelle, avec une pause commune possible ? | Oui : temps global partagé et gel de toute la simulation pendant une pause commune, notamment pour le déjeuner. Huit heures hors pauses représenteraient 480 jours simulés. |
-| Q9 | Les membres d'une équipe doivent-ils gérer ensemble une seule entreprise ? | Oui : une entreprise par équipe, plusieurs accès individuels et les mêmes droits de décision pour ses membres. Nombre d'équipes et de personnes à préciser si déjà connus. |
-| Q10 | Le marché client doit-il être simulé par le logiciel ? | Oui : des clients simulés génèrent une demande partagée que les équipes se disputent ; les échanges entre équipes constituent une activité distincte. La formule d'attribution sera décidée ensuite. |
-| Q11 | Peut-on limiter le contenu tout en conservant toutes les mécaniques ? | Oui : petit catalogue, quelques régions, spécialisations, événements et cartes pour la première version. Délai de réalisation, nombre de développeurs et niveau technique à communiquer pour dimensionner ce contenu. |
+| Q6 | Classement | Un seul gagnant confirmé. La recommandation de deux distinctions est refusée. La combinaison argent/impact reste ouverte. |
+| Q7 | Origine des impacts | Réponse ambiguë dans la transcription ; à confirmer. Proposition en attente : impacts liés aux fournisseurs, produits, transports et conditions salariales, visibles dans des indicateurs. |
+| Q8 | Temps et pauses | Validé : un jour simulé par minute réelle, temps global commun et possibilité de suspendre toute la simulation pendant une pause commune. |
+| Q9 | Entreprise et membres | Validé : une entreprise par équipe, plusieurs membres connectés simultanément et tous capables de prendre des décisions. Nombre d'équipes et de membres encore inconnu. |
+| Q10 | Clients et échanges | Validé : clients simulés par le logiciel et possibilité pour les entreprises d'acheter et de vendre entre elles. Biens échangeables et modalités à préciser. |
+| Q11 | Volume du contenu | Réponse ambiguë dans la transcription ; à confirmer. Proposition en attente : limiter le catalogue et le nombre de régions, machines, cartes et événements, en conservant toutes les mécaniques. |
+
+### Suite de l'entretien — questions ouvertes
+
+- **Q7 et Q11** : confirmer l'accord ou le désaccord avec les propositions ci-dessus ; elles ne sont pas considérées comme validées.
+- **Q12 — Gagnant unique** : proposition non validée d'un score final combinant résultat économique et impact social et environnemental, avec une majorité du poids pour l'économie. Pondération et normalisation à définir ensuite. Un classement selon l'argent avec un seuil minimal d'impact est une autre possibilité.
+- **Q13 — Échanges entre entreprises** : confirmer que les échanges portent sur les biens du jeu, sans rachat d'entreprise. Proposition non validée : transactions sur matières premières et produits, à prix négociés, avec règles de paiement et de livraison à préciser.
 
 ## 16. Reprendre le cadrage
 
-Reprendre les questions Q6–Q11 en attente de la section 15. Les réponses à Q1–Q5 sont enregistrées. Recalculer ensuite les questions dépendantes selon les réponses, sans transformer une recommandation restée sans réponse en règle acquise.
+Reprendre les clarifications Q7 et Q11 et les nouvelles questions Q12–Q13 en section 15. Les autres réponses des deux premières séries sont enregistrées. Recalculer ensuite les questions dépendantes selon les réponses, sans transformer une recommandation restée sans réponse en règle acquise.
 
 Les domaines à approfondir comprennent :
 
