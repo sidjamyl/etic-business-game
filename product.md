@@ -49,9 +49,9 @@ La rareté est effective : si un produit n'existe qu'en un exemplaire chez un fo
 
 ### Relations entre équipes — acquis
 
-Les équipes peuvent collaborer, s'allier et se trahir. Cette liberté fait partie de l'expérience souhaitée. Les entreprises peuvent aussi acheter et vendre entre elles, en plus des ventes aux clients simulés. Les biens et les modalités de ces échanges restent à préciser ; le rachat d'une entreprise n'est pas établi.
+Les équipes peuvent collaborer, s'allier et se trahir. Cette liberté fait partie de l'expérience souhaitée. Les entreprises peuvent aussi acheter et vendre entre elles, en plus des ventes aux clients simulés. Les échanges portent sur les matières premières et produits, à prix négociés. Ils ne désignent pas le rachat des entreprises. Les règles de paiement et de livraison restent à préciser.
 
-**À décider** : taille et nombre d'équipes, modalités d'authentification, biens échangeables et règles des transactions entre entreprises, transferts de fonds ou de marchandises, contrats, visibilité des accords et moyens de trahison. La présence d'un outil de négociation dans la plateforme n'est pas encore décidée.
+**À décider** : taille et nombre d'équipes, modalités d'authentification, règles des transactions entre entreprises, transferts de fonds ou de marchandises, contrats, visibilité des accords et moyens de trahison. La présence d'un outil de négociation dans la plateforme n'est pas encore décidée.
 
 ## 5. Temps et boucle de jeu
 
@@ -233,36 +233,51 @@ Paliers, conditions de déblocage, coût et visibilité des choix, permanence de
 | --- | --- | --- |
 | Q1 | Objectif pédagogique et profondeur | Validé : apprendre à réaliser ce type de projet, comprendre la gestion de l'entreprise et réfléchir en équipe. Une profondeur stratégique réelle est souhaitée, avec une réalisation de taille raisonnable. |
 | Q2 | Format | Validé : journée en présentiel, approximativement 10 h–18 h, début et fin communs à toutes les équipes. La proposition de 2–3 heures est remplacée. Le ratio et le principe de pause commune sont confirmés par Q8 ; les horaires des pauses restent à préciser. |
-| Q3 | Victoire | À la fin de la journée, l'argent détenu est un critère de victoire. Le porteur souhaite aussi prendre en compte l'impact social et environnemental. Leur combinaison et leurs mesures restent ouvertes. La valorisation des stocks et des équipements proposée par l'assistant n'a pas été retenue comme règle. |
+| Q3 | Victoire | À la fin de la journée, l'argent détenu est un critère de victoire. Le porteur souhaite aussi prendre en compte l'impact social et environnemental. Un score final combinant argent et impact est validé en Q12 ; sa formule et les mesures restent ouvertes. La valorisation des stocks et des équipements proposée par l'assistant n'a pas été retenue comme règle. |
 | Q4 | Organisateurs | Choix délégué à l'assistant, avec une préférence pour la simplicité : événements prédéfinis et automatiques. Un pilotage manuel est facultatif si peu coûteux. |
-| Q5 | Périmètre de la première version | Toutes les mécaniques décrites sont souhaitées jouables dès cette version. Réduire le volume de contenu reste une proposition à discuter ; supprimer des mécaniques n'est pas une décision validée. |
+| Q5 | Périmètre de la première version | Toutes les mécaniques décrites sont souhaitées jouables dès cette version. Un volume limité de contenu est accepté en Q11, en conservant toutes les mécaniques. |
 
 ### Classement et impact social et environnemental
 
-**Acquis** : un seul gagnant à la fin de la journée. L'argent disponible compte dans la victoire et le volet social et environnemental doit être pris en compte dans la définition du classement. La proposition de distinctions séparées est refusée.
+**Acquis** : un seul gagnant à la fin de la journée, déterminé par un score final combinant argent et impact social et environnemental. Le résultat économique a un poids majoritaire. Les distinctions séparées ne sont pas retenues.
 
-**À décider** : combinaison des critères dans le classement unique, priorité de l'argent, poids des impacts, mesure des impacts, distinction entre social et environnemental, égalités et traitement des engagements en cours à la clôture. Aucun score composite ni formule comptable n'est encore validé.
+Les impacts découlent des décisions courantes : choix de fournisseurs, produits, transports et conditions salariales. Des indicateurs visibles permettent à l'équipe de comprendre les conséquences de ses choix, sans ajouter un module de gestion distinct.
+
+**À décider** : formule du score, pondération exacte avec majorité pour l'économie, normalisation des critères, mesure des impacts, distinction entre social et environnemental, égalités et traitement des engagements en cours à la clôture. Le principe du score composite est validé ; aucune formule chiffrée ne l'est encore.
 
 ### Deuxième série — réponses et clarifications
 
 | ID | Sujet | Réponse et statut |
 | --- | --- | --- |
-| Q6 | Classement | Un seul gagnant confirmé. La recommandation de deux distinctions est refusée. La combinaison argent/impact reste ouverte. |
-| Q7 | Origine des impacts | Réponse ambiguë dans la transcription ; à confirmer. Proposition en attente : impacts liés aux fournisseurs, produits, transports et conditions salariales, visibles dans des indicateurs. |
+| Q6 | Classement | Un seul gagnant confirmé. La recommandation de deux distinctions est refusée. Le score combinant argent et impact est confirmé en Q12. |
+| Q7 | Origine des impacts | Validé : impacts liés aux fournisseurs, produits, transports et conditions salariales, visibles dans des indicateurs pour comprendre leurs conséquences. |
 | Q8 | Temps et pauses | Validé : un jour simulé par minute réelle, temps global commun et possibilité de suspendre toute la simulation pendant une pause commune. |
 | Q9 | Entreprise et membres | Validé : une entreprise par équipe, plusieurs membres connectés simultanément et tous capables de prendre des décisions. Nombre d'équipes et de membres encore inconnu. |
-| Q10 | Clients et échanges | Validé : clients simulés par le logiciel et possibilité pour les entreprises d'acheter et de vendre entre elles. Biens échangeables et modalités à préciser. |
-| Q11 | Volume du contenu | Réponse ambiguë dans la transcription ; à confirmer. Proposition en attente : limiter le catalogue et le nombre de régions, machines, cartes et événements, en conservant toutes les mécaniques. |
+| Q10 | Clients et échanges | Validé : clients simulés par le logiciel et possibilité pour les entreprises d'acheter et de vendre entre elles. Matières premières et produits à prix négociés, confirmés en Q13 ; modalités de paiement et de livraison à préciser. |
+| Q11 | Volume du contenu | Validé : limiter le catalogue et le nombre de régions, machines, cartes et événements, en conservant toutes les mécaniques. |
 
-### Suite de l'entretien — questions ouvertes
+### Troisième série — confirmations enregistrées
 
-- **Q7 et Q11** : confirmer l'accord ou le désaccord avec les propositions ci-dessus ; elles ne sont pas considérées comme validées.
-- **Q12 — Gagnant unique** : proposition non validée d'un score final combinant résultat économique et impact social et environnemental, avec une majorité du poids pour l'économie. Pondération et normalisation à définir ensuite. Un classement selon l'argent avec un seuil minimal d'impact est une autre possibilité.
-- **Q13 — Échanges entre entreprises** : confirmer que les échanges portent sur les biens du jeu, sans rachat d'entreprise. Proposition non validée : transactions sur matières premières et produits, à prix négociés, avec règles de paiement et de livraison à préciser.
+| ID | Sujet | Réponse et statut |
+| --- | --- | --- |
+| Q12 | Gagnant unique | Validé : un score final combinant argent et impact social et environnemental, avec un poids majoritaire pour l'économie. Formule, proportions et normalisation restent à définir. |
+| Q13 | Échanges entre entreprises | Validé : échanges de matières premières et de produits à prix négociés, sans rachat d'entreprise. Règles de paiement et de livraison restent à définir. |
+
+Les réponses à Q7 et Q11 ont également été confirmées explicitement. Aucune réponse de cette série ne reste en attente de clarification.
+
+### Questions proposées pour une prochaine session
+
+Ces points sont ouverts ; ils ne constituent pas des règles approuvées :
+
+- **Q14 — Score** : quelles pondérations, unités et règles de normalisation appliquer à l'argent, au social et à l'environnement ? Comment départager les égalités ?
+- **Q15 — Fin de partie** : comment traiter stocks, machines, commandes, livraisons et paiements encore en cours à la clôture ?
+- **Q16 — Économie initiale** : quels moyens donner au départ et que se passe-t-il lorsqu'une entreprise ne peut plus payer ?
+- **Q17 — Échanges** : quand payer, réserver le stock et transférer les marchandises entre entreprises ? Quels engagements sont contraignants ?
+- **Q18 — Réalisation** : combien d'équipes et de membres sont attendus, avec quel délai de développement, quelle équipe de réalisation et quel niveau technique ?
 
 ## 16. Reprendre le cadrage
 
-Reprendre les clarifications Q7 et Q11 et les nouvelles questions Q12–Q13 en section 15. Les autres réponses des deux premières séries sont enregistrées. Recalculer ensuite les questions dépendantes selon les réponses, sans transformer une recommandation restée sans réponse en règle acquise.
+Le cadrage général et les réponses à Q1–Q13 sont enregistrés. Pour approfondir, partir des questions Q14–Q18 de la section 15 ou du domaine que souhaite explorer le porteur du projet. Recalculer ensuite les questions dépendantes selon les réponses, sans transformer une recommandation restée sans réponse en règle acquise.
 
 Les domaines à approfondir comprennent :
 
@@ -278,8 +293,10 @@ Une nouvelle session peut approfondir une partie du document seulement. Elle doi
 
 ## 17. Périmètre de réalisation
 
-La première version doit rendre jouables toutes les mécaniques décrites : régions, temps partagé, achats, fabrication et usure, ventes, livraisons, ressources humaines, marketing, news, événements et enchères, marché noir, cartes secrètes, alliances et trahisons, easter eggs et progression à choix exclusifs. Le volet social et environnemental souhaité doit également être défini.
+La première version doit rendre jouables toutes les mécaniques décrites : régions, temps partagé, achats, fabrication et usure, ventes, livraisons, ressources humaines, marketing, news, événements et enchères, marché noir, cartes secrètes, alliances et trahisons, easter eggs et progression à choix exclusifs. Le volet social et environnemental fait partie des décisions courantes et du score final ; ses règles de calcul restent à définir.
 
-Cette ambition est un objectif produit, pas encore une estimation de faisabilité. Le volume de contenu, les priorités de réalisation, le calendrier, les ressources disponibles, la plateforme cible et la stack technique restent à décider.
+Un volume limité de contenu est validé pour cette première version : catalogue et nombre de régions, machines, cartes et événements réduits, tout en conservant les mécaniques. Les quantités exactes restent à choisir.
+
+Cette ambition est un objectif produit, pas encore une estimation de faisabilité. Les priorités de réalisation, le calendrier, les ressources disponibles, la plateforme cible et la stack technique restent à décider.
 
 Aucune application n'est encore implémentée dans ce dépôt. Aucun équilibrage économique ni scénario de partie complet n'a encore été testé.
