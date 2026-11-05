@@ -396,6 +396,26 @@ L'organisateur fixe l'heure de fin ou clôture manuellement. L'écran projeté a
 
 La première version rend jouables toutes les mécaniques décrites ci-dessus, avec un volume de contenu limité (PRD, section Scope). Trois interfaces : participant, organisateur et écran projeté.
 
-Démarche de réalisation validée : `write-a-prd` → `prd-to-issues` → `start-next-issue` → `start-implementation`. La stack technique et l'organisation du dépôt restent à décider au début de la réalisation.
+Démarche de réalisation validée : `write-a-prd` → `prd-to-issues` → `start-next-issue` → `start-implementation`. La PRD est publiée dans l'issue GitHub #1.
+
+### Stack et organisation technique — acquis (6 novembre 2026)
+
+| ID | Sujet | Décision |
+| --- | --- | --- |
+| S1 | Langage et architecture | TypeScript partout, monorepo : `engine` (règles pures), `server` (temps réel), `web` (React + Vite), avec TanStack Query et TanStack Router. |
+| S2 | Communication | tRPC v11 et Zod, intégration officielle TanStack Query, envoi temps réel par abonnements SSE. |
+| S3 | Données | PostgreSQL et Drizzle ; Postgres en conteneur Docker en développement et en secours. Parties en cours en mémoire, instantané à chaque jour simulé. |
+| S4 | Authentification | Better Auth (Google, e-mail et mot de passe), adaptateur Drizzle ; organisateur désigné par e-mail dans la configuration. |
+| S5 | Interface | Tailwind CSS v4, shadcn/ui, Recharts ; identité visuelle dans [`DESIGN.md`](DESIGN.md). |
+| D1 | Couleurs fonctionnelles | Ajout de Pousse (vert) et Ocre (ambre), réservées aux variations, alertes et graphiques. |
+| S6 | Déploiement | VPS Contabo d'un ami, Docker Compose (image applicative, Postgres, HTTPS) ; même Compose pour le secours local. URL indifférente, compatible avec la connexion Google. |
+| S7 | Qualité | Tests unitaires et simulations par bots sur le moteur ; un test Playwright du parcours principal ; Biome ; TypeScript strict. |
+| S8 | CI/CD | Aucune : vérifications lancées localement par une commande unique ; déploiement manuel à la fin. |
+| S9 | Réseau | Un flux SSE par navigateur, aucun polling ; vue complète à la connexion puis deltas par équipe regroupés par tick ; flux public séparé pour l'écran projeté ; commandes tRPC groupées, validées et limitées en débit ; compression et cache des fichiers statiques. |
+| S10 | Observabilité | Logs Pino JSON, journal des commandes dans Postgres (débogage, journal d'activité, débriefing), route `/health`, métriques serveur dans la vue organisateur ; aucun service externe. |
+| S11 | Dépôt | Workspaces Bun : `apps/server`, `apps/web`, `packages/engine`, `packages/content` ; une seule image Docker ; code et commits en anglais, interface et documentation en français. |
+| S12 | Exécution | Bun pour l'exécution, les tests (`bun test`) et les scripts ; Hono comme serveur HTTP ; pilote postgres.js. |
+| S13 | Moteur | État unique sérialisable ; fonctions pures `applyCommand` et `tick` (un jour simulé) ; aléatoire déterministe à graine ; sauvegarde par instantané et journal de commandes ; rejeu possible ; commandes sérialisées par partie côté serveur. |
+| S14 | Conventions front | TanStack Form et schémas Zod partagés ; pas de gestionnaire d'état global ; français sans bibliothèque d'internationalisation ; pas de `useEffect` pour les données ou l'état dérivé ; routes `/`, `/play/*`, `/admin/*`, `/screen/:gameId`. |
 
 Aucune application n'est encore implémentée dans ce dépôt. Aucun équilibrage économique ni scénario de partie complet n'a encore été testé.
