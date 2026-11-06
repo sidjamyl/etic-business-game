@@ -54,7 +54,10 @@ export const hrCommands = [
     actor: "team",
     schema: z.object({
       job: z.enum(jobIds),
-      count: z.int("Le nombre doit être entier.").min(1, "Recrutez au moins une personne.").max(50),
+      count: z
+        .int("Le nombre doit être entier.")
+        .min(1, "Recrutez au moins une personne.")
+        .max(hrRules.maxHiresPerDecision),
     }),
     apply: (draft, { job, count }, actor) => {
       const team = actingTeam(draft, actor);

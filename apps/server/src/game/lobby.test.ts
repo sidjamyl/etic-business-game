@@ -83,7 +83,7 @@ describe("lobby routes", () => {
     const result = await call({ user: user("a") }).game.join({ code: ` ${joinCode} ` });
     expect(result).toEqual({ ok: true, gameId, teamId: "t2" });
     expect(await call({ user: user("a") }).game.current()).toEqual([
-      { gameId, name: "Journée ETIC", teamId: "t2", status: "lobby" },
+      { gameId, name: "Journée ETIC", teamId: "t2", status: "lobby", msPerDay: 60_000 },
     ]);
   });
 
@@ -175,5 +175,27 @@ describe("organizer end-of-game routes", () => {
       ok: true,
     });
     expect(manager.get(gameId)?.snapshot.results?.revealedCount).toBe(1);
+  });
+});
+
+describe("games for the screens", () => {
+  test("a finished game stays current, so players can see the results", async () => {
+    const { call } = setup();
+    const { gameId, detail } = await createGame(call);
+    await call({ user: user("a") }).game.join({ code: detail.teams[0]?.joinCode ?? "" });
+    await call({ user: boss }).admin.control({ gameId, action: "end" });
+    expect((await call({ user: user("a") }).game.current())[0]).toMatchObject({
+      gameId,
+      status: "ended",
+    });
+  });
+
+  test("the projector gets the game name and speed without signing in", async () => {
+    const { call } = setup();
+    const { gameId } = await createGame(call);
+    expect(await call({ user: null }).screen.info({ gameId })).toEqual({
+      name: "Journée ETIC",
+      msPerDay: 60_000,
+    });
   });
 });

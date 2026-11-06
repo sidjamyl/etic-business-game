@@ -120,6 +120,10 @@ describe("other events", () => {
     };
     const after = engine.step(state);
     expect(team(after).shipments.s1?.arrivesOnDay).toBe(99);
+    // Shipping previews can add the delay to new routes as well.
+    expect(teamView(after, "t1")?.market.transportDelays).toEqual([
+      expect.objectContaining({ region: "port-libre", extraDays: 3 }),
+    ]);
   });
 
   test("Nordhaven's wage rise applies to new hires", () => {

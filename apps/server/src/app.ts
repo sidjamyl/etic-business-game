@@ -1,6 +1,7 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { Hono } from "hono";
 import type { Logger } from "./logger.ts";
+import { serveWebApp } from "./static.ts";
 import type { AppRouter } from "./trpc/router.ts";
 import type { Context } from "./trpc/trpc.ts";
 
@@ -13,9 +14,18 @@ export interface AppDeps {
   /** Builds the tRPC context (session and role) from the request headers. */
   createContext: (headers: Headers) => Promise<Context>;
   router: AppRouter;
+  /** Built web app to serve (production); omitted in development and tests. */
+  webDist?: string;
 }
 
-export function createApp({ logger, pingDatabase, authHandler, createContext, router }: AppDeps) {
+export function createApp({
+  logger,
+  pingDatabase,
+  authHandler,
+  createContext,
+  router,
+  webDist,
+}: AppDeps) {
   const app = new Hono();
 
   app.get("/health", async (c) => {
@@ -39,6 +49,8 @@ export function createApp({ logger, pingDatabase, authHandler, createContext, ro
       },
     }),
   );
+
+  if (webDist && serveWebApp(app, webDist)) logger.info({ webDist }, "serving web app");
 
   app.onError((error, c) => {
     logger.error({ err: error, path: c.req.path }, "unhandled error");

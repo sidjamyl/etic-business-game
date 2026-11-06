@@ -164,14 +164,42 @@ describe("wear and maintenance", () => {
 });
 
 describe("operators and machines", () => {
-  test("operators cannot change during a cycle", () => {
+  test("operators cannot be removed during a cycle", () => {
     const state = engine.step(setJob(factory()));
     expect(
       refusalOf(engine, state, t1, {
         type: "production.assignOperators",
         payload: { machineId: MACHINE, employeeIds: [] },
-      })?.code,
-    ).toBe("INVALID_STATE");
+      }),
+    ).toEqual({
+      code: "INVALID_STATE",
+      message: "Impossible de retirer un opérateur pendant un cycle : attendez sa fin.",
+    });
+  });
+
+  test("a cycle left without operators by a layoff restarts once operators are added", () => {
+    let state = engine.step(setJob(factory()));
+    const operators = Object.keys(state.teams.t1?.employees ?? {});
+    state = mustApply(engine, state, t1, {
+      type: "hr.layoff",
+      payload: { employeeIds: operators },
+    });
+    state = engine.step(state);
+    expect(machine(state)?.status).toBe("waiting-operators");
+    const stepsDone = machine(state)?.cycle?.stepsDone ?? 0;
+    state = mustApply(engine, state, t1, {
+      type: "hr.hire",
+      payload: { job: "operator", count: 2 },
+    });
+    state = advanceDays(engine, state, 2); // the new operators arrive
+    const hired = Object.keys(state.teams.t1?.employees ?? {});
+    state = mustApply(engine, state, t1, {
+      type: "production.assignOperators",
+      payload: { machineId: MACHINE, employeeIds: hired },
+    });
+    state = engine.step(state);
+    expect(machine(state)?.status).toBe("running");
+    expect(machine(state)?.cycle?.stepsDone).toBe(stepsDone + 1);
   });
 
   test("only operators can be assigned", () => {

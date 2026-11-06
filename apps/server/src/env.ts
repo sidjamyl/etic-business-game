@@ -24,6 +24,8 @@ const envSchema = z.object({
         .map((email) => email.trim().toLowerCase())
         .filter(Boolean),
     ),
+  /** Built web app served by the server; defaults to apps/web/dist. */
+  WEB_DIST: optionalText,
   GOOGLE_CLIENT_ID: optionalText,
   GOOGLE_CLIENT_SECRET: optionalText,
 });

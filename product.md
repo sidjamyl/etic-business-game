@@ -1,6 +1,6 @@
 # ETIC Business Game
 
-Statut : cadrage des règles achevé (Q1–Q13, P1–P12, R1–R24, O1–O4) ; PRD v1 en cours de validation dans [`docs/prd-v1.md`](docs/prd-v1.md).
+Statut : règles et PRD v1 validées ; backend et interfaces implémentés, démonstration locale disponible. Référence : [`docs/prd-v1.md`](docs/prd-v1.md).
 Dernière mise à jour : 6 novembre 2026.
 
 ## 1. Intention du projet
@@ -348,7 +348,7 @@ La proposition de reporter les règles ouvertes aux tickets de réalisation a é
 | O3 | Mot de passe oublié | Validé : pas de réinitialisation par e-mail en v1 ; connexion Google ou nouveau compte avec le code d'équipe ; l'organisateur peut retirer l'ancien compte. |
 | O4 | Taille des équipes | Validé : plafond fixé à la création de la partie, 4 par défaut, modifiable par l'organisateur. |
 
-Aucune question de règle ne reste ouverte. La stack technique et l'organisation du dépôt seront décidées au début de la réalisation.
+Aucune question de règle ne reste ouverte. La stack et l'organisation du dépôt sont consignées en section 18.
 
 ### Septième série — précisions de réalisation du backend (6 novembre 2026)
 
@@ -448,7 +448,7 @@ Démarche de réalisation validée : `write-a-prd` → `prd-to-issues` → `star
 | S5 | Interface | Tailwind CSS v4, shadcn/ui, Recharts ; identité visuelle dans [`DESIGN.md`](DESIGN.md). |
 | D1 | Couleurs fonctionnelles | Ajout de Pousse (vert) et Ocre (ambre), réservées aux variations, alertes et graphiques. |
 | S6 | Déploiement | VPS Contabo d'un ami, Docker Compose (image applicative, Postgres, HTTPS) ; même Compose pour le secours local. URL indifférente, compatible avec la connexion Google. |
-| S7 | Qualité | Tests unitaires et simulations par bots sur le moteur ; un test Playwright du parcours principal ; Biome ; TypeScript strict. |
+| S7 | Qualité | Tests unitaires et simulations par bots sur le moteur ; un test HTTP du parcours principal contre PostgreSQL (remplacement de Playwright explicitement validé pendant la phase frontend) ; Biome ; TypeScript strict. |
 | S8 | CI/CD | Aucune : vérifications lancées localement par une commande unique ; déploiement manuel à la fin. |
 | S9 | Réseau | Un flux SSE par navigateur, aucun polling ; vue complète à la connexion puis deltas par équipe regroupés par tick ; flux public séparé pour l'écran projeté ; commandes tRPC groupées, validées et limitées en débit ; compression et cache des fichiers statiques. |
 | S10 | Observabilité | Logs Pino JSON, journal des commandes dans Postgres (débogage, journal d'activité, débriefing), route `/health`, métriques serveur dans la vue organisateur ; aucun service externe. |
@@ -457,4 +457,4 @@ Démarche de réalisation validée : `write-a-prd` → `prd-to-issues` → `star
 | S13 | Moteur | État unique sérialisable ; fonctions pures `applyCommand` et `tick` (un jour simulé) ; aléatoire déterministe à graine ; sauvegarde par instantané et journal de commandes ; rejeu possible ; commandes sérialisées par partie côté serveur. |
 | S14 | Conventions front | TanStack Form et schémas Zod partagés ; pas de gestionnaire d'état global ; français sans bibliothèque d'internationalisation ; pas de `useEffect` pour les données ou l'état dérivé ; routes `/`, `/play/*`, `/admin/*`, `/screen/:gameId`. |
 
-Aucune application n'est encore implémentée dans ce dépôt. Aucun équilibrage économique ni scénario de partie complet n'a encore été testé.
+Le backend et les trois interfaces sont implémentés. Les simulations atteignent 5 cibles sur 7 (N26) ; le réglage final attend la répétition humaine. La démonstration locale se lance avec `bun run demo` (guide : `docs/demo.md`). Le déploiement #47 reste hors de la livraison de démonstration.

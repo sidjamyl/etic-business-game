@@ -1,6 +1,6 @@
 # PRD — ETIC Business Game v1
 
-Statut : brouillon soumis à validation du porteur du projet.
+Statut : validée par le porteur du projet et publiée dans l’issue GitHub #1. Backend et interfaces implémentés ; déploiement #47 hors du périmètre de la démonstration locale.
 Référence produit : [`product.md`](../product.md) (vision, règles acquises et historique des décisions P1–P12, R1–R24, O1–O4).
 
 ## Problem Statement
@@ -304,11 +304,11 @@ Le contenu et toutes les valeurs chiffrées sont rédigés par l'assistant, test
 
 ## Open Questions
 
-Aucune question de règle ne reste ouverte : les précisions O1–O4 sont intégrées aux user stories et consignées dans `product.md`. La stack technique et l'organisation du dépôt seront décidées dans le premier ticket de réalisation.
+Aucune question de règle ne reste ouverte : les précisions O1–O4 sont intégrées aux user stories et consignées dans `product.md`. La stack technique et l'organisation du dépôt sont définies dans `product.md` §18.
 
 ## Further Notes
 
 - Toutes les décisions de cette PRD sont consignées comme acquises dans `product.md` (séries P1–P12, R1–R24 et O1–O4).
-- La stack technique, l'organisation du dépôt et les choix d'hébergement précis seront décidés au début de la réalisation, dans le premier ticket.
+- La stack et l’organisation du dépôt sont définies dans `product.md` §18 ; l’hébergement cible est un VPS Contabo.
 - Démarche convenue : `write-a-prd` → `prd-to-issues` → `start-next-issue` → `start-implementation`. Premier objectif recommandé : une tranche verticale jouable (connexion, équipe, lobby, horloge, achat, production, vente, pause), puis une mécanique par ticket.
 - Une répétition complète en mode accéléré avec de vraies personnes précède la journée réelle.

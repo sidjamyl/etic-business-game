@@ -26,9 +26,35 @@ export interface CommandDefinition<S extends z.ZodType = z.ZodType> {
 
 export type CommandRegistry = Record<string, CommandDefinition>;
 
-export function defineCommand<S extends z.ZodType>(def: CommandDefinition<S>): CommandDefinition {
-  return def as unknown as CommandDefinition;
+/**
+ * A definition that also carries its type name, payload input type and actor as phantom types
+ * (erased at runtime). Typed clients derive their command map from these (see TeamCommandMap).
+ */
+export type TypedCommand<
+  T extends string,
+  S extends z.ZodType,
+  A extends Actor["kind"],
+> = CommandDefinition & {
+  readonly __types?: { readonly type: T; readonly input: z.input<S>; readonly actor: A };
+};
+
+export function defineCommand<
+  const T extends string,
+  S extends z.ZodType,
+  const A extends Actor["kind"],
+>(def: CommandDefinition<S> & { type: T; actor: A }): TypedCommand<T, S, A> {
+  return def as unknown as TypedCommand<T, S, A>;
 }
+
+type PhantomOf<C> = C extends { readonly __types?: infer P } ? NonNullable<P> : never;
+type InputOf<C> = PhantomOf<C> extends { readonly input: infer I } ? I : never;
+
+/** Maps each command type of a definition list to its payload input, for one kind of actor. */
+export type CommandMapOf<C, A extends Actor["kind"]> = {
+  [D in C as PhantomOf<D> extends { actor: A; type: infer T extends string }
+    ? T
+    : never]: InputOf<D>;
+};
 
 export function buildRegistry(...groups: CommandDefinition[][]): CommandRegistry {
   const registry: CommandRegistry = {};

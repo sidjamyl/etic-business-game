@@ -17,7 +17,11 @@
     "format": "biome check --write .",
     "test": "bun test",
     "check": "bun run typecheck && bun run lint && bun run test",
-    "sim": "bun packages/engine/src/sim/run.ts"
+    "sim": "bun packages/engine/src/sim/run.ts",
+    "dev": "bun run --filter '@etic/server' --filter '@etic/web' dev",
+    "demo": "bun --env-file=.env apps/server/src/demo.ts",
+    "dev:web": "bun run --filter @etic/web dev",
+    "build": "bun run --filter @etic/web build"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.6.5",

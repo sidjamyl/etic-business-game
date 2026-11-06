@@ -1,6 +1,7 @@
 import {
   type Branch,
   equipmentSuppliers,
+  type JobId,
   materialSuppliers,
   type ProductId,
   products,
@@ -15,11 +16,20 @@ import { daysRemaining, isCountdown } from "./clock.ts";
 import { auctionsView } from "./modules/auctions.ts";
 import { blackMarketView } from "./modules/black-market.ts";
 import { logisticsCapacity } from "./modules/delivery.ts";
+import { baseWage } from "./modules/hr.ts";
 import { type ImpactScores, impactScores } from "./modules/impact.ts";
 import { milestoneProgress } from "./modules/progression.ts";
 import { revealedResults } from "./modules/scoring.ts";
 import { tradesView } from "./modules/trades.ts";
-import type { Announcement, GameState, GameStatus, NewsItem, SimTime, TeamState } from "./types.ts";
+import type {
+  Announcement,
+  GameState,
+  GameStatus,
+  NewsItem,
+  SimTime,
+  TeamState,
+  TransportDelay,
+} from "./types.ts";
 
 /** What every team (and the projector) may know about a company. */
 export interface CompanySummary {
@@ -76,6 +86,11 @@ export interface MarketView {
   laborPool: Partial<Record<RegionId, number>>;
   /** Normal and maximum price per region and product (N10, story 61). */
   pricing: Partial<Record<RegionId, Partial<Record<ProductId, { local: number; max: number }>>>>;
+  /**
+   * Transport events in progress (R12): extra days on every route touching the region. Already
+   * visible on the shipments they delay; listed here for the shipping previews.
+   */
+  transportDelays: TransportDelay[];
 }
 
 /** A news item as players see it: its origin (scenario or secret card) is never revealed. */
@@ -94,6 +109,8 @@ export interface TeamView {
   warehouseUsed: number;
   /** Shipments the logisticians can prepare per day (R8). */
   logisticsCapacity: number;
+  /** Wage of a new hire per job in the team's region, events included (R6, R12). */
+  wages: Record<JobId, number>;
   /** Black-market offers for this team (R13); its own traces are in `team.blackMarket`. */
   blackMarket: ReturnType<typeof blackMarketView>;
   /** Final results, only once the organizer has finished the reveal (N21). */
@@ -167,6 +184,10 @@ export function teamView(state: GameState, teamId: string): TeamView | null {
     memberCap: state.memberCap,
     warehouseUsed,
     logisticsCapacity: logisticsCapacity(team, state.time.day),
+    wages: {
+      operator: baseWage(state, team, "operator"),
+      logistician: baseWage(state, team, "logistician"),
+    },
     nextMilestone: milestoneProgress(team),
     auctions: auctionsView(state, teamId),
     trades: tradesView(state, teamId),
@@ -249,5 +270,11 @@ export function marketView(state: GameState, region: RegionId | null): MarketVie
     }
     pricing[region.id] = byProduct;
   }
-  return { suppliers, machines, laborPool: { ...state.market.laborPool }, pricing };
+  return {
+    suppliers,
+    machines,
+    laborPool: { ...state.market.laborPool },
+    pricing,
+    transportDelays: Object.values(state.market.transportDelays).map((delay) => ({ ...delay })),
+  };
 }

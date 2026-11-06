@@ -20,17 +20,34 @@ Business game du mini-projet d'intégration du club ETIC : quatre équipes dirig
 bun install
 cp .env.example .env      # valeurs par défaut adaptées au Postgres local
 bun run db:up             # Postgres 17 dans Docker, exposé sur le port 5433
-bun run dev:server        # serveur sur http://localhost:3000 (rechargement à chaud)
-curl localhost:3000/health
+bun run dev               # serveur (port 3000) et application web (port 5173)
 ```
 
-Les migrations de la base sont appliquées automatiquement au démarrage du serveur.
+Ouvrir http://localhost:5173. Le serveur Vite transmet `/api` au serveur sur le port 3000. Les migrations de la base sont appliquées automatiquement au démarrage du serveur.
+
+Pour organiser une partie, ajouter son adresse e-mail à `ORGANIZER_EMAILS` dans `.env` puis relancer le serveur : le rôle est recalculé à chaque requête, il n'est pas nécessaire de recréer le compte.
+
+| Écran | Adresse |
+| --- | --- |
+| Accueil et connexion | `/` |
+| Rejoindre une équipe avec un code | `/join` |
+| Jeu des participants | `/play` |
+| Parties et salle de contrôle de l'organisateur | `/admin` |
+| Écran projeté (sans connexion) | `/screen/<identifiant de la partie>` |
+
+Pour une répétition, l'organisateur peut créer une partie accélérée (durée d'un jour simulé et nombre de jours réglables).
 
 ## Commandes
 
+Pour une présentation avec quatre entreprises déjà actives : `bun run db:up`, puis `bun run demo`. Comptes, mot de passe et déroulé dans [le guide de démonstration](docs/demo.md).
+
 | Commande | Rôle |
 | --- | --- |
-| `bun run dev:server` | Lance le serveur en mode développement |
+| `bun run dev` | Lance le serveur et l'application web en mode développement |
+| `bun run dev:server` / `bun run dev:web` | Lance l'un des deux seulement |
+| `bun run build` | Construit l'application web dans `apps/web/dist`, servie par le serveur en production |
+| `bun run demo` | Prépare quatre entreprises au jour 131 et démarre la démonstration locale, en pause |
+| `bun run sim` | Simule des parties entre bots et affiche le rapport d'équilibrage ([docs/balancing.md](docs/balancing.md)) |
 | `bun run db:up` / `bun run db:down` | Démarre ou arrête Postgres |
 | `bun run db:generate` | Génère une migration SQL à partir du schéma Drizzle |
 | `bun run db:migrate` | Applique les migrations sans lancer le serveur |
@@ -41,7 +58,7 @@ Les migrations de la base sont appliquées automatiquement au démarrage du serv
 
 ```
 apps/server/       serveur Hono sur Bun : API, temps réel, authentification, exécution des parties
-apps/web/          application React (configurée dans l'issue #24)
+apps/web/          application React : écrans des participants, de l'organisateur et du projecteur
 packages/engine/   règles du jeu, TypeScript pur sans entrées-sorties
 packages/content/  données de jeu validées par Zod
 ```

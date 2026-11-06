@@ -107,26 +107,31 @@ export function createGameRouter({ manager, limiter }: GameRouterDeps) {
 
       /** Unfinished games the user plays in, most recent activity first. */
       current: authedProcedure.query(({ ctx }) =>
-        manager
-          .list()
-          .filter((runtime) => runtime.snapshot.status !== "ended")
-          .flatMap((runtime) => {
-            const teamId = teamOfUser(runtime.snapshot, ctx.user.id);
-            return teamId
-              ? [
-                  {
-                    gameId: runtime.id,
-                    name: runtime.name,
-                    teamId,
-                    status: runtime.snapshot.status,
-                  },
-                ]
-              : [];
-          }),
+        manager.list().flatMap((runtime) => {
+          const teamId = teamOfUser(runtime.snapshot, ctx.user.id);
+          return teamId
+            ? [
+                {
+                  gameId: runtime.id,
+                  name: runtime.name,
+                  teamId,
+                  status: runtime.snapshot.status,
+                  /** Real milliseconds per simulated day, for the time left (#26). */
+                  msPerDay: runtime.msPerDay,
+                },
+              ]
+            : [];
+        }),
       ),
     }),
 
     screen: router({
+      /** Name and clock speed of a game, for the projector screen (no login). */
+      info: publicProcedure.input(gameInput).query(({ input }) => {
+        const runtime = requireGame(manager, input.gameId);
+        return { name: runtime.name, msPerDay: runtime.msPerDay };
+      }),
+
       /** Projector screen: public data only, no login (P10, story 126). */
       stream: publicProcedure.input(gameInput).subscription(async function* ({ input, signal }) {
         yield* requireGame(manager, input.gameId).streamPublic(signal);

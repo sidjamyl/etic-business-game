@@ -34,7 +34,7 @@ export * from "./systems.ts";
 export * from "./types.ts";
 export * from "./views.ts";
 
-import { buildRegistry } from "./commands.ts";
+import { buildRegistry, type CommandMapOf } from "./commands.ts";
 import { controlCommands } from "./control.ts";
 import { createEngine } from "./engine.ts";
 import { lobbyCommands } from "./lobby.ts";
@@ -57,8 +57,8 @@ import { tradeCommands, tradeSystem } from "./modules/trades.ts";
 /** One simulated day lasts one real minute in a real game (product.md §5). */
 export const DEFAULT_MS_PER_DAY = 60_000;
 
-/** The registry of every command known to the game. Module issues add their groups here. */
-export const gameCommands = buildRegistry(
+/** Every command group of the game, in registration order. */
+const commandGroups = [
   controlCommands,
   lobbyCommands,
   purchasingCommands,
@@ -75,7 +75,16 @@ export const gameCommands = buildRegistry(
   tradeCommands,
   scoringCommands,
   easterEggCommands,
-);
+] as const;
+
+/** The registry of every command known to the game. Module issues add their groups here. */
+export const gameCommands = buildRegistry(...commandGroups);
+
+type AnyCommand = (typeof commandGroups)[number][number];
+
+/** Payload input of every team decision, by command type (typed web client, #26). */
+export type TeamCommandMap = CommandMapOf<AnyCommand, "team">;
+export type TeamCommandType = keyof TeamCommandMap;
 
 /** The game engine with every module wired in. */
 export const gameEngine = createEngine({

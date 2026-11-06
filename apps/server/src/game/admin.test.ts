@@ -58,6 +58,18 @@ describe("control room stream (N22)", () => {
     expect(view.companies.a).toMatchObject({ cash: 55_000, debt: 5_000 });
   });
 
+  test("the end time set by the organizer is in the view, so a reload still shows it", async () => {
+    const { runtime } = await setup();
+    const endsAt = new Date(Date.now() + 3_600_000);
+    runtime.setEndsAt(organizer, endsAt);
+    const controller = new AbortController();
+    const first = (await runtime.streamAdmin(controller.signal).next())
+      .value as StreamMessage<AdminStreamView>;
+    controller.abort();
+    if (first.kind !== "full") throw new Error("expected a full view");
+    expect(first.view.game.endsAt).toBe(endsAt.toISOString());
+  });
+
   test("the stream is organizer-only", async () => {
     const { runtime, call } = await setup();
     const denied = (await call({ user: player })

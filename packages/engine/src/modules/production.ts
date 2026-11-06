@@ -88,8 +88,13 @@ export const productionCommands = [
     apply: (draft, { machineId, employeeIds }, actor) => {
       const team = actingTeam(draft, actor);
       const machine = requireMachine(team, machineId);
-      refuseDuringCycle(machine, "de changer les opérateurs");
       const wanted = new Set(employeeIds);
+      // During a cycle operators may be added but not removed: after a layoff or a collective
+      // resignation the suspended cycle must be able to restart (output is fixed at its start).
+      const removesOperator = Object.values(team.employees).some(
+        (employee) => employee.machineId === machineId && !wanted.has(employee.id),
+      );
+      if (removesOperator) refuseDuringCycle(machine, "de retirer un opérateur");
       for (const id of wanted) {
         const employee = team.employees[id];
         if (!employee) refuse("NOT_FOUND", "Employé introuvable.");

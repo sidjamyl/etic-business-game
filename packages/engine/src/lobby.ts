@@ -1,4 +1,4 @@
-import { regionIds, startRules } from "@etic/content";
+import { regionById, regionIds, startRules } from "@etic/content";
 import { z } from "zod";
 import { defineCommand } from "./commands.ts";
 import { refuse } from "./errors.ts";
@@ -74,7 +74,7 @@ export const lobbyCommands = [
       team.region = region;
       logTeam(draft, team.id, {
         kind: "decision",
-        message: `Région : ${region}`,
+        message: `Région : ${regionById.get(region)?.name ?? region}`,
         actor: actor.name,
       });
     },

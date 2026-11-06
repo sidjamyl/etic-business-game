@@ -1,8 +1,19 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
   "files": {
-    "includes": ["**", "!**/*.md", "!**/drizzle/meta", "!.agents"]
+    "includes": [
+      "**",
+      "!**/*.md",
+      "!**/drizzle/meta",
+      "!.agents",
+      "!**/routeTree.gen.ts",
+      "!**/dist"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -12,10 +23,41 @@
   },
   "linter": {
     "enabled": true,
-    "rules": { "preset": "recommended" }
+    "rules": {
+      "preset": "recommended"
+    }
   },
   "javascript": {
-    "formatter": { "quoteStyle": "double", "semicolons": "always" }
+    "formatter": {
+      "quoteStyle": "double",
+      "semicolons": "always"
+    }
   },
-  "assist": { "actions": { "source": { "organizeImports": "on" } } }
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["apps/web/src/components/ui/**"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noArrayIndexKey": "off"
+          },
+          "security": {
+            "noDangerouslySetInnerHtml": "off"
+          }
+        }
+      }
+    }
+  ]
 }

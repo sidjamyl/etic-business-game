@@ -48,6 +48,15 @@ describe("roles", () => {
     expect(await caller({ user: organizer }).ping()).toBe("pong");
   });
 
+  test("session returns the user or null, never an error", async () => {
+    expect(await caller({ user: null }).app.session()).toBeNull();
+    expect(await caller({ user: participant }).app.session()).toEqual(participant);
+  });
+
+  test("config tells whether Google sign-in is available", async () => {
+    expect(await caller({ user: null }).app.config()).toEqual({ google: false });
+  });
+
   test("me returns the session user", async () => {
     expect(await caller({ user: participant }).app.me()).toEqual(participant);
   });

@@ -33,6 +33,8 @@ export const hrRules = {
     logistician: { name: "Logisticien", wageFactor: 1.1 },
   },
   hiringDelayDays: 2,
+  /** Most people hired in a single decision. */
+  maxHiresPerDecision: 50,
   payrollEveryDays: 30,
   /** Days without a raise before efficiency starts to drop. */
   raiseGraceDays: 60,
@@ -200,7 +202,7 @@ export const blackMarketRules = {
   sellPremium: 0.3,
   /** Units a team may sell per day, by tier. */
   dailySellCap: { 1: 40, 2: 10, 3: 2 },
-  /** Port-Libre's wider access: stock and caps multiplier (R3). */
+  /** Port-Libre's wider access (R3): multiplier of the daily sell caps (more buyers). */
   portLibreFactor: 1.5,
   /** Chance that a Port-Libre deal is caught by customs (R3). */
   customsChance: 0.05,

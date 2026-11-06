@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import { gameEngine } from "@etic/engine";
 import { createApp } from "./app.ts";
 import { createAuth, isGoogleEnabled } from "./auth/auth.ts";
@@ -40,7 +41,15 @@ const app = createApp({
   pingDatabase: database.ping,
   authHandler: auth.handler,
   createContext: createContextFactory(auth, env.ORGANIZER_EMAILS),
-  router: createAppRouter({ manager, limiter: new RateLimiter() }),
+  router: createAppRouter({
+    manager,
+    limiter: new RateLimiter(),
+    publicConfig: { google: isGoogleEnabled(env) },
+  }),
+  // Production serves the built web app; in development Vite serves it (port 5173).
+  ...(env.WEB_DIST || env.NODE_ENV === "production"
+    ? { webDist: env.WEB_DIST ?? fileURLToPath(new URL("../../web/dist", import.meta.url)) }
+    : {}),
 });
 
 const server = Bun.serve({ port: env.PORT, fetch: app.fetch });

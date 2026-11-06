@@ -1,6 +1,6 @@
 import { scenarioAuctions, scenarioEvents } from "@etic/content";
 import type { GameState } from "../types.ts";
-import { clockView } from "../views.ts";
+import { clockView, isTeamReady } from "../views.ts";
 import { recentTraces } from "./black-market.ts";
 import { isOnStrike } from "./hr.ts";
 import { impactScores } from "./impact.ts";
@@ -24,7 +24,9 @@ export function adminView(state: GameState) {
           name: team.name,
           companyName: team.companyName,
           region: team.region,
-          members: Object.values(team.members).map((m) => m.name),
+          joinCode: team.joinCode,
+          members: Object.values(team.members),
+          ready: isTeamReady(team),
           cash: team.cash,
           availableCash: availableCash(team),
           debt: team.finance.debt,
@@ -72,6 +74,7 @@ export function adminView(state: GameState) {
     .map((event) => ({ id: event.id, title: event.title, day: event.day }));
   return {
     clock: clockView(state),
+    memberCap: state.memberCap,
     companies,
     ranking: state.results?.ranking ?? computeRanking(state),
     results: state.results,

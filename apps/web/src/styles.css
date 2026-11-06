@@ -1,0 +1,193 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+ * Business Game identity (DESIGN.md): Cacao, Power red, Cloud, Night, Milk,
+ * plus the functional colours Pousse (gain) and Ocre (warning) — D1.
+ */
+@custom-variant dark (&:is(.dark *));
+
+/* Charter fonts load when their files are added to public/fonts (DESIGN.md §8). */
+@font-face {
+  font-family: "Popping Cute";
+  src: url("/fonts/popping-cute.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Coolvetica";
+  src: url("/fonts/coolvetica.woff2") format("woff2");
+  font-weight: 400 500;
+  font-display: swap;
+}
+
+:root {
+  --cacao: #3a1d10;
+  --power-red: #c62a2a;
+  --cloud: #bcbcbc;
+  --night: #23282a;
+  --milk: #f5f5ef;
+  --pousse: #2f7d4f;
+  --ocre: #9a5b12;
+
+  --radius: 12px;
+  --background: var(--milk);
+  --foreground: var(--night);
+  --card: #ffffff;
+  --card-foreground: var(--night);
+  --popover: #ffffff;
+  --popover-foreground: var(--night);
+  --primary: var(--power-red);
+  --primary-foreground: var(--milk);
+  --secondary: #e7e6df;
+  --secondary-foreground: var(--night);
+  --muted: #e7e6df;
+  --muted-foreground: #5b6063;
+  --accent: var(--cacao);
+  --accent-foreground: var(--milk);
+  --destructive: var(--power-red);
+  --success: var(--pousse);
+  --warning: var(--ocre);
+  --border: var(--cloud);
+  --input: var(--cloud);
+  --ring: var(--power-red);
+  --sidebar: var(--night);
+  --sidebar-foreground: var(--milk);
+  /* Categorical chart colours from the charter (DESIGN.md §3, D1). */
+  --chart-1: var(--power-red);
+  --chart-2: var(--cacao);
+  --chart-3: var(--pousse);
+  --chart-4: var(--ocre);
+  --chart-5: #7d8285;
+}
+
+.dark {
+  --background: var(--night);
+  --foreground: var(--milk);
+  --card: #2c3235;
+  --card-foreground: var(--milk);
+  --popover: #2c3235;
+  --popover-foreground: var(--milk);
+  --secondary: var(--cacao);
+  --secondary-foreground: var(--milk);
+  --muted: #2c3235;
+  --muted-foreground: #b4b6b3;
+  --accent: var(--power-red);
+  --accent-foreground: var(--milk);
+  --success: #6fbf8a;
+  --warning: #e0a64a;
+  /* Power red is 2.7:1 on Night: a lighter red keeps error text readable (5.7:1). */
+  --destructive: #f47c7c;
+  --ring: #f47c7c;
+  --border: #3d4447;
+  --input: #3d4447;
+  --chart-1: #e05252;
+  --chart-2: var(--milk);
+  --chart-3: #6fbf8a;
+  --chart-4: #e0a64a;
+  --chart-5: var(--cloud);
+}
+
+@theme inline {
+  --font-display:
+    "Popping Cute", "Nunito", ui-rounded, "Arial Rounded MT Bold", system-ui, sans-serif;
+  --font-sans: "Coolvetica", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-cacao: var(--cacao);
+  --color-power-red: var(--power-red);
+  --color-cloud: var(--cloud);
+  --color-night: var(--night);
+  --color-milk: var(--milk);
+  --color-pousse: var(--pousse);
+  --color-ocre: var(--ocre);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+}
+
+/* Numbers that update live (cash, clock, stock) must not jitter (DESIGN.md §4). */
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Small uppercase spaced labels above titles (charter "surtitres"). */
+@utility eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/*
+ * The charter's dotted offset shadow, reserved for highlighted elements
+ * (secret card, auction bid, received offer, binding confirmation) — DESIGN.md §5.
+ */
+@utility shadow-dotted {
+  position: relative;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translate(8px, 8px);
+    border-radius: inherit;
+    background-image: radial-gradient(currentColor 1px, transparent 1.2px);
+    background-size: 4px 4px;
+    color: var(--cloud);
+    z-index: -1;
+    /* Inside the isolated stacking context the dots would paint over the element's own
+       background: keep only the 8 px strip that sticks out on the right and at the bottom. */
+    clip-path: polygon(
+      calc(100% - 8px) 0,
+      100% 0,
+      100% 100%,
+      0 100%,
+      0 calc(100% - 8px),
+      calc(100% - 8px) calc(100% - 8px)
+    );
+  }
+}

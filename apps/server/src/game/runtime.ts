@@ -31,7 +31,8 @@ export interface RuntimeMetrics {
 
 /** Control-room view: the organizer projection plus server health (N22). */
 export type AdminStreamView = AdminView & {
-  game: { id: string; name: string; msPerDay: number };
+  /** `endsAt`: wall-clock end set by the organizer (ISO), to show it after a reload. */
+  game: { id: string; name: string; msPerDay: number; endsAt: string | null };
   metrics: {
     lastStepDurationMs: number;
     lastStepAt: string | null;
@@ -246,7 +247,12 @@ export class GameRuntime {
   private adminSnapshot(): AdminStreamView {
     return {
       ...adminView(this.state),
-      game: { id: this.id, name: this.name, msPerDay: this.msPerDay },
+      game: {
+        id: this.id,
+        name: this.name,
+        msPerDay: this.msPerDay,
+        endsAt: this.endsAt?.toISOString() ?? null,
+      },
       metrics: {
         lastStepDurationMs: Math.round(this.metrics.lastStepDurationMs * 100) / 100,
         lastStepAt: this.metrics.lastStepAt?.toISOString() ?? null,

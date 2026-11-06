@@ -160,3 +160,12 @@ describe("collective resignation (N25)", () => {
     expect(engine.applyCommand(state, t1, hire("operator", 2)).ok).toBe(true);
   });
 });
+
+describe("team view wages", () => {
+  test("the view gives the wage of a new hire, events included", () => {
+    const state = startedGame(engine, ["nordhaven"]);
+    expect(teamView(state, "t1")?.wages).toEqual({ operator: 2_400, logistician: 2_640 });
+    state.market.wageFactor.nordhaven = 1.15;
+    expect(teamView(state, "t1")?.wages.operator).toBe(2_760);
+  });
+});
