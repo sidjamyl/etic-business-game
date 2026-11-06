@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { credits, percent, signedCredits, stepLabel, timeLeft } from "./format.ts";
+import { credits, percent, score, signedCredits, stepLabel, timeLeft } from "./format.ts";
 
 const clean = (text: string) => text.replace(/\s/g, " ");
 
@@ -13,6 +13,11 @@ describe("format", () => {
 
   test("percent", () => {
     expect(clean(percent(0.85))).toBe("85 %");
+  });
+
+  test("scores on 100 keep one French decimal at most", () => {
+    expect(score(62.34)).toBe("62,3");
+    expect(score(70)).toBe("70");
   });
 
   test("time left converts simulated days into real time", () => {

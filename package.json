@@ -20,6 +20,7 @@
     "sim": "bun packages/engine/src/sim/run.ts",
     "dev": "bun run --filter '@etic/server' --filter '@etic/web' dev",
     "demo": "bun --env-file=.env apps/server/src/demo.ts",
+    "demo:film": "bun --env-file=.env apps/server/src/demo-film/server.ts",
     "dev:web": "bun run --filter @etic/web dev",
     "build": "bun run --filter @etic/web build"
   },

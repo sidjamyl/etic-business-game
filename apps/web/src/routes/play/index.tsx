@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/game/page-header";
 import { StatCard } from "@/components/game/stat-card";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { credits, formatNumber, regionName } from "@/lib/format";
+import { credits, formatNumber, regionName, score } from "@/lib/format";
 import { useView } from "@/lib/game";
 
 export const Route = createFileRoute("/play/")({
@@ -59,13 +59,13 @@ function Dashboard() {
           value={formatNumber(orders.length)}
           hint={`${pending} en attente d'acceptation`}
         />
-        <StatCard label="Réputation" value={`${team.reputation} / 100`} info="reputation" />
+        <StatCard label="Réputation" value={`${score(team.reputation)} / 100`} info="reputation" />
         <StatCard
           label="Environnement"
-          value={`${view.impact.environmental} / 100`}
+          value={`${score(view.impact.environmental)} / 100`}
           info="environmental"
         />
-        <StatCard label="Social" value={`${view.impact.social} / 100`} info="social" />
+        <StatCard label="Social" value={`${score(view.impact.social)} / 100`} info="social" />
         <StatCard
           label="Machines"
           value={`${running} / ${machines.length}`}

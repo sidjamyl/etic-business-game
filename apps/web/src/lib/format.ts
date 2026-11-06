@@ -6,6 +6,7 @@ const decimal = new Intl.NumberFormat("fr-FR", {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
 });
+const oneDecimal = new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 1 });
 const percentFormat = new Intl.NumberFormat("fr-FR", {
   style: "percent",
   maximumFractionDigits: 0,
@@ -28,6 +29,11 @@ export function signedCredits(delta: number): string {
 
 export function formatNumber(value: number): string {
   return integer.format(value);
+}
+
+/** Indicator on 100 (reputation, impact) with at most one decimal: "62,3". */
+export function score(value: number): string {
+  return oneDecimal.format(value);
 }
 
 /** Ratio (0.85) as "85 %". */
