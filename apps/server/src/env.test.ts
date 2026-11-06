@@ -34,4 +34,24 @@ describe("parseEnv", () => {
   test("rejects a short auth secret", () => {
     expect(() => parseEnv({ ...base, BETTER_AUTH_SECRET: "short" })).toThrow(/BETTER_AUTH_SECRET/);
   });
+
+  test("empty optional variables from .env.example count as not set", () => {
+    const env = parseEnv({ ...base, GOOGLE_CLIENT_ID: "", GOOGLE_CLIENT_SECRET: "  " });
+    expect(env.GOOGLE_CLIENT_ID).toBeUndefined();
+    expect(env.GOOGLE_CLIENT_SECRET).toBeUndefined();
+  });
+
+  test(".env.example itself is a valid configuration", async () => {
+    const file = await Bun.file(new URL("../../../.env.example", import.meta.url)).text();
+    const values = Object.fromEntries(
+      file
+        .split("\n")
+        .filter((line) => line.includes("=") && !line.trim().startsWith("#"))
+        .map((line) => [
+          line.slice(0, line.indexOf("=")).trim(),
+          line.slice(line.indexOf("=") + 1).trim(),
+        ]),
+    );
+    expect(() => parseEnv(values)).not.toThrow();
+  });
 });

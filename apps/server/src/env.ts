@@ -1,5 +1,11 @@
 import { z } from "zod";
 
+/** An optional variable left empty in .env (`NAME=`) counts as not set. */
+const optionalText = z.preprocess(
+  (value) => (typeof value === "string" && value.trim() === "" ? undefined : value),
+  z.string().min(1).optional(),
+);
+
 const envSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   PORT: z.coerce.number().int().positive().default(3000),
@@ -18,8 +24,8 @@ const envSchema = z.object({
         .map((email) => email.trim().toLowerCase())
         .filter(Boolean),
     ),
-  GOOGLE_CLIENT_ID: z.string().min(1).optional(),
-  GOOGLE_CLIENT_SECRET: z.string().min(1).optional(),
+  GOOGLE_CLIENT_ID: optionalText,
+  GOOGLE_CLIENT_SECRET: optionalText,
 });
 
 export type Env = z.infer<typeof envSchema>;
