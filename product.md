@@ -170,7 +170,7 @@ Session commune en présentiel d'environ 10 h à 18 h. L'organisateur fixe l'heu
 - **Paie automatique tous les 30 jours simulés.**
 - **Rendement** initial de 100 %. Sans augmentation pendant 60 jours, il baisse par paliers (exemple : −5 % tous les 10 jours, jusqu'à 50 %). Une **augmentation d'au moins 5 %** relance le délai et rétablit progressivement le rendement.
 - Un salaire supérieur à la moyenne régionale améliore l'impact social ; un salaire minimal le dégrade.
-- **Paie impossible** : grève (production nulle) jusqu'au paiement et baisse de l'impact social.
+- **Paie impossible** : grève (production nulle) jusqu'au paiement et baisse de l'impact social. **Acquis (N25)** : après 10 jours de grève, les employés impayés démissionnent ensemble ; les arriérés sont annulés, ils retournent au bassin d'emploi, l'entreprise subit une pénalité sociale de 15 et peut réembaucher.
 - **Licenciement** possible contre une indemnité (exemple : un demi-mois de salaire) et une pénalité d'impact social. Aucune démission aléatoire.
 
 ## 10. Marketing — acquis (R10)
@@ -349,6 +349,45 @@ La proposition de reporter les règles ouvertes aux tickets de réalisation a é
 | O4 | Taille des équipes | Validé : plafond fixé à la création de la partie, 4 par défaut, modifiable par l'organisateur. |
 
 Aucune question de règle ne reste ouverte. La stack technique et l'organisation du dépôt seront décidées au début de la réalisation.
+
+### Septième série — précisions de réalisation du backend (6 novembre 2026)
+
+Décisions prises pendant la discussion de chaque issue (#2 à #23). Le détail figure dans le commentaire de clôture de chaque issue GitHub.
+
+| ID | Sujet | Réponse et statut |
+| --- | --- | --- |
+| N5 | Pas de temps | Validé : 4 sous-étapes par jour simulé (toutes les 15 s en vitesse réelle) ; règles quotidiennes une fois par jour. |
+| N6 | Rejoindre en cours de partie | Validé : possible pendant toute la partie, pauses comprises, dans la limite du plafond. |
+| N7 | Catalogue | Validé : 9 matières, 8 produits et leurs recettes ; 2 à 3 fournisseurs par matière ; matrice de délais entre régions. |
+| N8 | Ressources humaines | Validé : salaires et bassins régionaux, paie tous les 30 jours, grève, baisse sans augmentation, indemnités. |
+| N9 | Production | Validé : opérateurs requis, file de cycles, matières au départ, usure 1 %/jour, maintenance à 10 % du prix. |
+| N10 | Demande | Validé : prix de référence, population, pouvoir d'achat, reprise progressive, répartition par attractivité, commandes clients. |
+| N11 | Livraison | Validé : options standard, express, verte ; capacité des logisticiens ; retard −20 % ; échec 5 jours après l'échéance. |
+| N12 | Finance | Validé : grand livre, prêt plafonné à ₢30 000, intérêts de 3 % tous les 30 jours. |
+| N13 | Progression | Validé : jalons de ventes et projets de développement ; seule la production est bloquée. |
+| N14 | Marketing | Validé : coût selon population, étendue et durée ; +20 % d'attractivité sans cumul. |
+| N15 | Scénario | Validé : 15 événements de 25 à 400 jours avec indices et fausses pistes. |
+| N16 | Enchères | Validé : brevet, licence d'export, ligne dernière génération ; offres scellées et montant bloqué. |
+| N17 | Marché noir | Validé : prix, plafonds, traces, enquêtes, accusations ; amende au-delà du disponible ajoutée à la dette. |
+| N18 | Cartes | Validé : règles précises des six cartes ; espionnage invisible, sabotage signalé anonymement, amnistie préventive. |
+| N19 | Échanges | Validé : offre du vendeur, séquestre, transport selon R8 sans file des logisticiens, transferts libres. |
+| N20 | Impact | Validé : moyennes de sous-notes pondérées par les volumes ; pénalités sociales. |
+| N21 | Révélation | Validé : pilotée par l'organisateur, de la dernière à la première équipe, puis détail. |
+| N22 | Salle de contrôle | Validé : flux organisateur en temps réel. |
+| N23 | Easter eggs | Validé : Konami, logo, acrostiche « TRÉSOR », code « ENTREPOT-404 ». |
+| N24 | Équilibrage | Validé : 4 bots, 10 graines, 7 cibles mesurées automatiquement (`bun run sim`). |
+| N25 | Grève sans fin | Validé : **modifie R6** — après 10 jours de grève, les employés impayés démissionnent ensemble ; arriérés annulés, pénalité sociale de 15, réembauche possible. |
+| N26 | Fin de l'équilibrage par bots | Validé : arrêt à 5 cibles sur 7 ; les deux cibles manquées relèvent des limites des bots ; réglage final après la répétition (rapport dans `docs/balancing.md`). |
+
+### Ajustements d'équilibrage (#23, R23)
+
+Valeurs modifiées après les simulations par bots ; elles restent des données de jeu, à réajuster après la répétition :
+
+- Entrepôt : 1 500 unités au départ, extension de +1 000 pour ₢10 000 (500 bloquaient la production de trois machines).
+- Stocks des fournisseurs : niveaux hebdomadaires portés à environ 85 % du besoin de quatre entreprises à pleine production.
+- Prix : matières premières −25 % ; prix de référence des paliers 1 et 2 +56 % au total (pain ₢31, eau ₢19, savon ₢29, vêtements ₢94, plats ₢54, bouilloire ₢187) ; prime des fournisseurs éthiques ramenée à environ +40 %.
+- Azura : pouvoir d'achat 0,75 au lieu de 0,6.
+- Palier 3 : jalon de 200 ventes du palier 2, projet à ₢25 000 ; lignes Tech et Loisirs à ₢22 000 et ₢20 000 ; demande du palier 3 de jour 150 à jour 300 (au lieu de 180 à 360) ; demande de base des ordinateurs portés à 6 et des consoles à 8.
 
 ## 16. Trésorerie, prêts et difficultés — acquis (R16)
 
