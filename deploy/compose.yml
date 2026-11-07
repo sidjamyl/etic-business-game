@@ -1,0 +1,100 @@
+# Production and local fallback (S6): same file, different deploy/.env.
+# Usage, from deploy/: ./deploy.sh — guide: docs/deploy.md
+name: etic
+
+# Docker keeps container logs forever by default; cap them on the VPS.
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "20m"
+    max-file: "5"
+
+services:
+  app:
+    logging: *logging
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: etic-business-game:latest
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      DATABASE_URL: postgres://${POSTGRES_USER:-etic}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}@db:5432/${POSTGRES_DB:-etic}
+      APP_URL: ${APP_URL:?set APP_URL in deploy/.env}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?set BETTER_AUTH_SECRET in deploy/.env}
+      ORGANIZER_EMAILS: ${ORGANIZER_EMAILS:?set ORGANIZER_EMAILS in deploy/.env}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+    # Loopback only: Caddy reaches the app on the internal network. An existing proxy
+    # on the VPS can use this port instead (see docs/deploy.md). Never expose it publicly:
+    # the client IP used for rate limiting comes from X-Forwarded-For.
+    ports:
+      - "${APP_BIND:-127.0.0.1:3000}:3000"
+    # The server snapshots running games on SIGTERM.
+    stop_grace_period: 30s
+
+  db:
+    logging: *logging
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-etic}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
+      POSTGRES_DB: ${POSTGRES_DB:-etic}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # Daily dump, 7 kept (deploy/backups). Pre-deploy dumps are made by deploy.sh.
+  backup:
+    logging: *logging
+    image: postgres:17-alpine
+    restart: unless-stopped
+    # After the app is healthy, so the first dump includes the migrated schema.
+    depends_on:
+      app:
+        condition: service_healthy
+    environment:
+      PGHOST: db
+      PGUSER: ${POSTGRES_USER:-etic}
+      PGPASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
+      PGDATABASE: ${POSTGRES_DB:-etic}
+      BACKUP_KEEP: ${BACKUP_KEEP:-7}
+    volumes:
+      - ./backups:/backups
+      - ./backup-loop.sh:/backup-loop.sh:ro
+    entrypoint: ["sh", "/backup-loop.sh"]
+
+  # HTTPS with automatic certificates. Disabled with COMPOSE_PROFILES= when the VPS
+  # already has a reverse proxy.
+  caddy:
+    logging: *logging
+    image: caddy:2-alpine
+    profiles: ["https"]
+    restart: unless-stopped
+    depends_on:
+      - app
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:?set SITE_ADDRESS in deploy/.env}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  db-data:
+  caddy-data:
+  caddy-config:

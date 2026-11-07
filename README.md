@@ -54,6 +54,10 @@ Pour une présentation avec quatre entreprises déjà actives : `bun run db:up`,
 | `bun run check` | Typecheck strict, Biome et tests : à lancer avant chaque PR |
 | `bun run format` | Formate et corrige automatiquement avec Biome |
 
+## Déploiement
+
+Image Docker unique, Postgres, HTTPS par Caddy et sauvegardes quotidiennes, avec `deploy/compose.yml` ; déploiement manuel par `./deploy/deploy.sh`, refusé pendant une partie. Guide du VPS et du mode de secours sur le réseau local : [docs/deploy.md](docs/deploy.md).
+
 ## Structure
 
 ```

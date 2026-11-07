@@ -12,10 +12,14 @@ export interface Context {
   user: SessionUser | null;
 }
 
+export const SSE_PING_INTERVAL_MS = 15_000;
+/** Bun.serve idle timeout; must stay above the ping interval or Bun cuts idle streams. */
+export const SSE_IDLE_TIMEOUT_SECONDS = 60;
+
 const t = initTRPC.context<Context>().create({
   // Keep SSE connections alive through proxies; the client reconnects if pings stop (S9).
   sse: {
-    ping: { enabled: true, intervalMs: 15_000 },
+    ping: { enabled: true, intervalMs: SSE_PING_INTERVAL_MS },
     client: { reconnectAfterInactivityMs: 20_000 },
   },
 });

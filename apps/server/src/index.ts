@@ -11,6 +11,7 @@ import { RateLimiter } from "./game/rate-limit.ts";
 import { createLogger } from "./logger.ts";
 import { createContextFactory } from "./trpc/context.ts";
 import { createAppRouter } from "./trpc/router.ts";
+import { SSE_IDLE_TIMEOUT_SECONDS } from "./trpc/trpc.ts";
 
 let env: ReturnType<typeof parseEnv>;
 try {
@@ -52,7 +53,13 @@ const app = createApp({
     : {}),
 });
 
-const server = Bun.serve({ port: env.PORT, fetch: app.fetch });
+const server = Bun.serve({
+  port: env.PORT,
+  fetch: app.fetch,
+  // Bun closes a connection after 10 s without bytes by default, which would cut SSE
+  // streams between two pings (S9).
+  idleTimeout: SSE_IDLE_TIMEOUT_SECONDS,
+});
 logger.info({ port: server.port }, "server listening");
 
 async function shutdown(signal: string) {

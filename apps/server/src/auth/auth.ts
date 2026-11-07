@@ -11,6 +11,24 @@ export type AuthEnv = Pick<
   "NODE_ENV" | "APP_URL" | "BETTER_AUTH_SECRET" | "GOOGLE_CLIENT_ID" | "GOOGLE_CLIENT_SECRET"
 >;
 
+/**
+ * Better Auth limits requests per IP in production, and by default allows only 3 sign-ins
+ * or sign-ups per 10 s. On game day the whole room shares the venue's public IP, so the
+ * limits are sized for a crowd arriving at once (about one attempt per second per IP).
+ */
+export const AUTH_RATE_LIMIT = {
+  window: 10,
+  max: 300,
+  customRules: {
+    "/sign-in/*": { window: 60, max: 60 },
+    "/sign-up/*": { window: 60, max: 60 },
+  },
+};
+
+export function usesHttps(appUrl: string): boolean {
+  return new URL(appUrl).protocol === "https:";
+}
+
 /** Google sign-in is enabled only when both credentials are configured (N3). */
 export function isGoogleEnabled(env: AuthEnv): boolean {
   return Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET);
@@ -41,7 +59,10 @@ export function createAuth(db: Database, env: AuthEnv) {
           }
         : {},
     session: { expiresIn: 7 * DAY, updateAge: DAY },
-    advanced: { useSecureCookies: env.NODE_ENV === "production" },
+    rateLimit: AUTH_RATE_LIMIT,
+    // Secure cookies follow the public URL: the local fallback is served over plain HTTP
+    // on the LAN, where browsers would drop `Secure` cookies and nobody could sign in.
+    advanced: { useSecureCookies: usesHttps(env.APP_URL) },
     telemetry: { enabled: false },
   });
 }

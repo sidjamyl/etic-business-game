@@ -1,0 +1,14 @@
+# SITE_ADDRESS: a domain (e.g. etic-game.duckdns.org) gets a Let's Encrypt certificate;
+# ":80" serves plain HTTP for the local fallback on the LAN.
+{$SITE_ADDRESS} {
+	# No `encode` here: the app already compresses static files, and compressing the
+	# SSE streams under /api would buffer them (S9). Caddy flushes text/event-stream
+	# responses immediately and sets X-Forwarded-For to the client address.
+	reverse_proxy app:3000
+
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+}
